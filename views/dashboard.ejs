@@ -1,0 +1,188 @@
+<%- include("partials/header") %>
+
+<section id="gallery-4" class="gallery-section gallery-style-4">
+	<div class="container">
+		<div class="row">
+			<div class="col-xxl-7 col-xl-8 col-lg-10">
+				<div class="section-title mb-40">
+					<h3 class="mb-15">Dashboard</h3>
+					<p>Edit or delete items (Hover or Click to see options)<br /><strong>DELETING IS
+							IRREVERSIBLE</strong></p>
+				</div>
+			</div>
+		</div>
+		<% if (!isOpen) { %>
+		<a href="/open-status" class="button radius-10-0">Open Business <i class="lni lni-chevron-right"></i>
+		</a>
+		<% } else { %>
+		<a href="/open-status" class="button radius-10-0">Close Business <i class="lni lni-chevron-right"></i>
+		</a>
+		<% } %>
+
+		<div class="row">
+			<div class="col-xxl-7 col-xl-8 col-lg-10">
+				<div class="section-title mt-40">
+					<h3 class="mb-15">FOOD SECTION</h3>
+					<p>Alerts are below here!</p>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="portfolio-button-wrapper">
+					<button class="portfolio-btn active" data-filter="*">All</button>
+					<button class="portfolio-btn" data-filter=".meats">Meats</button>
+					<button class="portfolio-btn" data-filter=".sides">Sides</button>
+					<button class="portfolio-btn" data-filter=".desserts">Desserts</button>
+					<button class="portfolio-btn" data-filter=".plates">Plates</button>
+					<button class="portfolio-btn" data-filter=".no-category">No Category</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="row grid gallery-4 meats">
+			<% food.forEach(foodItem=> { %>
+			<% if (["Meats"].includes(foodItem.category)) { %>
+			<div class="col-lg-4 col-md-6 gallery-item meats">
+				<div class="single-gallery">
+					<div class="image">
+						<img src="../img/images/logo.png" alt="">
+						<div class="overlay">
+							<div class="action">
+								<button id="<%= foodItem._id %>" class="delete lni lni-trash"
+									onclick="deleteFoodClicked(this.id)"></button>
+								<a href="/edit-food/<%= foodItem._id %>"> <i class="lni lni-pencil-alt"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="info">
+						<h5><%= foodItem.name %></h5>
+						<p><strong>Price:</strong> <%= foodItem.price %></p>
+						<p><%= foodItem.shortDescription %> (Meats)</p>
+					</div>
+				</div>
+			</div>
+			<% } %>
+			<% if (["Sides"].includes(foodItem.category)) { %>
+			<div class="col-lg-4 col-md-6 gallery-item sides">
+				<div class="single-gallery">
+					<div class="image">
+						<img src="../img/images/logo.png" alt="">
+						<div class="overlay">
+							<div class="action">
+								<button id="<%= foodItem._id %>" class="delete lni lni-trash"
+									onclick="deleteFoodClicked(this.id)"></button>
+								<a href="/edit-food/<%= foodItem._id %>"> <i class="lni lni-pencil-alt"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="info">
+						<h5><%= foodItem.name %></h5>
+						<p><strong>Price:</strong> <%= foodItem.price %></p>
+						<p><%= foodItem.shortDescription %> (Sides)</p>
+					</div>
+				</div>
+			</div>
+			<% } %>
+			<% if (["Desserts"].includes(foodItem.category)) { %>
+			<div class="col-lg-4 col-md-6 gallery-item desserts">
+				<div class="single-gallery">
+					<div class="image">
+						<img src="../img/images/logo.png" alt="">
+						<div class="overlay">
+							<div class="action">
+								<button id="<%= foodItem._id %>" class="delete lni lni-trash"
+									onclick="deleteFoodClicked(this.id)"></button>
+								<a href="/edit-food/<%= foodItem._id %>"> <i class="lni lni-pencil-alt"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="info">
+						<h5><%= foodItem.name %></h5>
+						<p><strong>Price:</strong> <%= foodItem.price %></p>
+						<p><%= foodItem.shortDescription %> (Desserts)</p>
+					</div>
+				</div>
+			</div>
+			<% } %>
+			<% if (["Plates"].includes(foodItem.category)) { %>
+			<div class="col-lg-4 col-md-6 gallery-item plates">
+				<div class="single-gallery">
+					<div class="image">
+						<img src="../img/images/logo.png" alt="">
+						<div class="overlay">
+							<div class="action">
+								<button id="<%= foodItem._id %>" class="delete lni lni-trash"
+									onclick="deleteFoodClicked(this.id)"></button>
+								<a href="/edit-food/<%= foodItem._id %>"> <i class="lni lni-pencil-alt"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="info">
+						<h5><%= foodItem.name %></h5>
+						<p><strong>Price:</strong> <%= foodItem.price %></p>
+						<p><%= foodItem.shortDescription %> (Plates)</p>
+					</div>
+				</div>
+			</div>
+			<% } %>
+			<% if (["No Category"].includes(foodItem.category)) { %>
+			<div class="col-lg-4 col-md-6 gallery-item no-category">
+				<div class="single-gallery">
+					<div class="image">
+						<img src="../img/images/logo.png" alt="">
+						<div class="overlay">
+							<div class="action">
+								<button id="<%= foodItem._id %>" class="delete lni lni-trash"
+									onclick="deleteFoodClicked(this.id)"></button>
+								<a href="/edit-food/<%= foodItem._id %>"> <i class="lni lni-pencil-alt"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="info">
+						<h5><%= foodItem.name %></h5>
+						<p><strong>Price:</strong> <%= foodItem.price %></p>
+						<p><%= foodItem.shortDescription %> (No Category)</p>
+					</div>
+				</div>
+			</div>
+			<% } %>
+			<% }) %>
+		</div>
+
+		<div class="row">
+			<div class="col-xxl-7 col-xl-8 col-lg-10">
+				<div class="section-title mt-40">
+					<h3 class="mb-15">ALERT SECTION</h3>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="portfolio-button-wrapper">
+					<button class="portfolio-btn active" data-filter="*">All Alerts</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="row grid gallery-4 meats">
+			<% alerts.forEach(alertsItem=> { %>
+			<div class="col-lg-4 col-md-6 gallery-item meats">
+				<div class="single-gallery">
+					<div class="image">
+						<img src="../img/images/logo.png" alt="">
+						<div class="overlay">
+							<div class="action">
+								<button id="<%= alertsItem._id %>" class="delete lni lni-trash"
+									onclick="deleteAlertClicked(this.id)"></button>
+								<a href="/edit-alert/<%= alertsItem._id %>"> <i class="lni lni-pencil-alt"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="info">
+						<h5><%= alertsItem.title %></h5>
+						<p><%= alertsItem.content %></p>
+					</div>
+				</div>
+			</div>
+			<% }) %>
+		</div>
+</section>
+
+<%- include("partials/footer") %>

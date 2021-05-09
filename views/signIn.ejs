@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<title>Smokin B's BBQ - ADMIN</title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" type="image/jpg" href="img/images/admin.svg" />
+	<!-- Place favicon.ico in the root directory -->
+
+	<!-- ========================= CSS here ========================= -->
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/lineicons.css" />
+	<link rel="stylesheet" href="css/tiny-slider.css" />
+	<link rel="stylesheet" href="css/glightbox.min.css" />
+	<link rel="stylesheet" href="css/animate.css" />
+	<link rel="stylesheet" href="css/uikit.css" />
+</head>
+
+<body style="background: #E5E5E5">
+	<div class="preloader">
+		<div class="loader">
+			<div class="spinner">
+				<div class="spinner-container">
+					<div class="spinner-rotator">
+						<div class="spinner-left">
+							<div class="spinner-circle"></div>
+						</div>
+						<div class="spinner-right">
+							<div class="spinner-circle"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% if (!isOpen) { %>
+	<div class="alert progress-bar-striped progress-bar-animated bg-primary" role="alert">
+		<h6 class="text-center text-light">Status: Closed</h6>
+	</div>
+	<% } else { %>
+	<div class="alert progress-bar-striped progress-bar-animated bg-primary" role="alert">
+		<h6 class="text-center text-light">Status: Open</h6>
+	</div>
+	<% } %>
+
+
+	<section class="login-section login-style-2 mb-80 mt-150">
+		<div class="container">
+			<div class="login-wrapper img-bg">
+				<div class="row justify-content-center">
+					<div class="col-lg-6 col-xl-5 offset-xl-1">
+						<div class="login-content-wrapper">
+							<div class="section-title mb-40">
+								<h3 class="mb-20">Sign In</h3>
+								<p>In order to access the admin dashboard, you must sign in.
+								</p>
+							</div>
+							<form action="/sign-in" class="login-form" method="POST">
+								<div class="single-input">
+									<label for="site_key">Site Key</label>
+									<input type="text" id="site_key" name="site_key" placeholder="Site Key">
+									<i class="lni lni-pagination"></i>
+								</div>
+								<div class="single-input">
+									<label for="site_password">Password</label>
+									<input type="password" id="site_password" name="site_password"
+										placeholder="Enter password">
+									<i class="lni lni-lock"></i>
+								</div>
+								<div class="form-footer">
+									<button type="button" onclick="forgot()" class="btn btn-link"
+										style="text-decoration: none;">Forgot Key or
+										Password?</button>
+								</div>
+								<div class="signup-button mb-25">
+									<button class="button button-lg radius-10 btn-block">Sign in</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script src="js/bootstrap.js"></script>
+	<script src="js/tiny-slider.js"></script>
+	<script src="js/count-up.min.js"></script>
+	<script src="js/imagesloaded.min.js"></script>
+	<script src="js/isotope.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/main.js"></script>
+	<script>
+		function forgot() {
+			alert("Key: SmokinBs\nPass: [when Smokin B's started]\n\nIt is recommended you let your browser save this!")
+		}
+	</script>
+
+</body>
+
+</html>

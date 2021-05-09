@@ -1,0 +1,77 @@
+<%- include("../partials/header") %>
+
+<section id="contact" class="contact-section contact-style-1">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+
+				<div class="row">
+					<div class="col-xxl-7 col-xl-8 col-lg-10">
+						<div class="section-title mb-40">
+							<h3 class="mb-15">New Food Item</h3>
+							<p>Create a new food item for public display</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="contact-form-wrapper">
+					<form action="/create-food" method="POST">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="single-input">
+									<label for="name">Item Name</label>
+									<input type="text" id="name" name="name" class="form-input" required>
+									<i class="lni lni-user"></i>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="single-input">
+									<label for="category">Item Category</label>
+									<select class="select-form form-select" name="category"
+										aria-label="Default select example">
+										<option value="Meats" selected>Meats</option>
+										<option value="Sides">Sides</option>
+										<option value="Desserts">Desserts</option>
+										<option value="Plates">Plates</option>
+										<option value="No Category">No Category</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="single-input">
+									<label for="price">Item Price</label>
+									<input type="text" id="price" name="price" class="form-input"
+										placeholder="$30 rack / $10 Pound / $5 Individual $10 Family" required>
+									<i class="lni lni-text-format"></i>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="single-input">
+									<label for="description">Short Description</label>
+									<textarea name="description" id="description" class="form-input" rows="6"
+										required></textarea>
+									<i class="lni lni-comments-alt"></i>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-button">
+									<button type="submit" class="button radius-10">Create <i
+											class="lni lni-telegram-original"></i> </button>
+									<button type="reset" class="button radius-10">Reset<i class="lni lni-reload"></i>
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="contact-image">
+		<img src="../img/images/illustation.svg" alt="">
+	</div>
+</section>
+
+<%- include("../partials/footer") %>

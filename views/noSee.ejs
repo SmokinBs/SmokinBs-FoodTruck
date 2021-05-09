@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="x-ua-compatible" content="ie=edge" />
+	<title>Smokin B's BBQ - ADMIN</title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="shortcut icon" type="image/jpg" href="img/images/admin.svg" />
+	<!-- Place favicon.ico in the root directory -->
+
+	<!-- ========================= CSS here ========================= -->
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/lineicons.css" />
+	<link rel="stylesheet" href="css/tiny-slider.css" />
+	<link rel="stylesheet" href="css/glightbox.min.css" />
+	<link rel="stylesheet" href="css/animate.css" />
+	<link rel="stylesheet" href="css/uikit1.css" />
+</head>
+
+<body style="background: #E5E5E5">
+	<div class="preloader">
+		<div class="loader">
+			<div class="spinner">
+				<div class="spinner-container">
+					<div class="spinner-rotator">
+						<div class="spinner-left">
+							<div class="spinner-circle"></div>
+						</div>
+						<div class="spinner-right">
+							<div class="spinner-circle"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% if (!isOpen) { %>
+	<div class="alert progress-bar-striped progress-bar-animated bg-primary" role="alert">
+		<h6 class="text-center text-light">Status: Closed</h6>
+	</div>
+	<% } else { %>
+	<div class="alert progress-bar-striped progress-bar-animated bg-primary" role="alert">
+		<h6 class="text-center text-light">Status: Open</h6>
+	</div>
+	<% } %>
+
+
+	<!-- Header Style 3 -->
+	<section class="hero-section-wrapper-3">
+		<div class="hero-section hero-style-3 img-bg"
+			style="background-image: url('../img/old/hero/hero-3/hero-bg.svg');">
+			<div class="container">
+				<div class="row justify-content-center">
+					<div class="col-xl-8 col-lg-8">
+						<div class="hero-content-wrapper">
+							<div class="content">
+								<h2 class="mb-30">Whoops!</h2>
+								<p class="mb-40">You are not allowed to see this page! Please try again later.</p>
+							</div>
+							<div class="image">
+								<img src="../img/old/hero/hero-3/hero-img.svg" alt="">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="shapes">
+				<img src="../img/old/hero/hero-3/shape-1.svg" alt="" class="shape shape-1">
+				<img src="../img/old/hero/hero-3/shape-2.svg" alt="" class="shape shape-2">
+				<img src="../img/old/hero/hero-3/shape-3.svg" alt="" class="shape shape-3">
+				<img src="../img/old/hero/hero-3/shape-4.svg" alt="" class="shape shape-4">
+				<img src="../img/old/hero/hero-3/shape-5.svg" alt="" class="shape shape-5">
+				<img src="../img/old/hero/hero-3/shape-6.svg" alt="" class="shape shape-6">
+				<img src="../img/old/hero/hero-3/shape-7.svg" alt="" class="shape shape-7">
+				<img src="../img/old/hero/hero-3/shape-8.svg" alt="" class="shape shape-8">
+			</div>
+		</div>
+	</section>
+	<script src="../js/main.js"></script>
+
+</body>
+
+</html>
