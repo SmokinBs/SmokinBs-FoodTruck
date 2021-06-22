@@ -2,28 +2,15 @@
 
 <section id="gallery-4" class="gallery-section gallery-style-4">
 	<div class="container">
-		<div class="row">
-			<div class="col-xxl-7 col-xl-8 col-lg-10">
-				<div class="section-title mb-40">
-					<h3 class="mb-15">Dashboard</h3>
-					<p>Edit or delete items (Hover or Click to see options)<br /><strong>DELETING IS
-							IRREVERSIBLE</strong></p>
-				</div>
-			</div>
-		</div>
-		<% if (!isOpen) { %>
-		<a href="/open-status" class="button radius-10-0">Open Business <i class="lni lni-chevron-right"></i>
-		</a>
-		<% } else { %>
-		<a href="/open-status" class="button radius-10-0">Close Business <i class="lni lni-chevron-right"></i>
-		</a>
-		<% } %>
+
+		<%- include("partials/message") %>
 
 		<div class="row">
 			<div class="col-xxl-7 col-xl-8 col-lg-10">
 				<div class="section-title mt-40">
 					<h3 class="mb-15">FOOD SECTION</h3>
-					<p>Alerts are below here!</p>
+					<p>Edit or delete items (Hover or Click to see options)<br /><strong>DELETING IS
+							IRREVERSIBLE</strong></p>
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -38,13 +25,14 @@
 			</div>
 		</div>
 
+
 		<div class="row grid gallery-4 meats">
 			<% food.forEach(foodItem=> { %>
 			<% if (["Meats"].includes(foodItem.category)) { %>
 			<div class="col-lg-4 col-md-6 gallery-item meats">
 				<div class="single-gallery">
 					<div class="image">
-						<img src="../img/images/logo.png" alt="">
+						<img src="../../../img/images/logo.png" alt="">
 						<div class="overlay">
 							<div class="action">
 								<button id="<%= foodItem._id %>" class="delete lni lni-trash"
@@ -65,7 +53,7 @@
 			<div class="col-lg-4 col-md-6 gallery-item sides">
 				<div class="single-gallery">
 					<div class="image">
-						<img src="../img/images/logo.png" alt="">
+						<img src="../../../img/images/logo.png" alt="">
 						<div class="overlay">
 							<div class="action">
 								<button id="<%= foodItem._id %>" class="delete lni lni-trash"
@@ -86,7 +74,7 @@
 			<div class="col-lg-4 col-md-6 gallery-item desserts">
 				<div class="single-gallery">
 					<div class="image">
-						<img src="../img/images/logo.png" alt="">
+						<img src="../../../img/images/logo.png" alt="">
 						<div class="overlay">
 							<div class="action">
 								<button id="<%= foodItem._id %>" class="delete lni lni-trash"
@@ -107,7 +95,7 @@
 			<div class="col-lg-4 col-md-6 gallery-item plates">
 				<div class="single-gallery">
 					<div class="image">
-						<img src="../img/images/logo.png" alt="">
+						<img src="../../../img/images/logo.png" alt="">
 						<div class="overlay">
 							<div class="action">
 								<button id="<%= foodItem._id %>" class="delete lni lni-trash"
@@ -128,7 +116,7 @@
 			<div class="col-lg-4 col-md-6 gallery-item no-category">
 				<div class="single-gallery">
 					<div class="image">
-						<img src="../img/images/logo.png" alt="">
+						<img src="../../../img/images/logo.png" alt="">
 						<div class="overlay">
 							<div class="action">
 								<button id="<%= foodItem._id %>" class="delete lni lni-trash"
@@ -166,7 +154,7 @@
 			<div class="col-lg-4 col-md-6 gallery-item meats">
 				<div class="single-gallery">
 					<div class="image">
-						<img src="../img/images/logo.png" alt="">
+						<img src="../../../img/images/logo.png" alt="">
 						<div class="overlay">
 							<div class="action">
 								<button id="<%= alertsItem._id %>" class="delete lni lni-trash"
