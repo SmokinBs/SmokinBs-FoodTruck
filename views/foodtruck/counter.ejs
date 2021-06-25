@@ -1,0 +1,108 @@
+<%- include("../partials/header") %>
+
+<section id="gallery-4" class="gallery-section gallery-style-4">
+	<div class="container">
+		<%- include("../partials/message") %>
+
+		<div class="row">
+			<div class="col-xxl-7 col-xl-8 col-lg-10  mt-50">
+				<div class="section-title mb-40">
+					<a href="#" data-toggle="modal" data-target="#cart" class="button button-sm radius-30"><i
+							class="lni lni-cart"></i></a>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal fade modal-dialog-centered modal-dialog-scrollable" id="cart" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true" style="display: none;">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Cart (<span class="total-count">0</span>)
+						</h5>
+						<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<table class="show-cart table"></table>
+
+						<section id="contact" class="contact-section contact-style-1 mb-20">
+							<div class="container">
+								<div class="row">
+									<div class="col-sm-8">
+										<div class="contact-form-wrapper">
+											<form>
+												<div class="row">
+													<div class="col-md-6">
+														<div class="single-input">
+															<label for="customerName">Customer Name</label>
+															<input type="text" id="customerName" name="customerName"
+																class="form-input mb-10 col-md-6 text-dark">
+														</div>
+													</div>
+													<div class="col-md-12">
+														<div class="single-input">
+															<label for="additionalComments">Additional
+																Comments</label>
+															<textarea name="additionalComments" id="additionalComments"
+																class="form-input" rows="6"></textarea>
+														</div>
+													</div>
+												</div>
+											</form>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<div>Total price: $<span class="total-cart">0</span></div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="clear-cart btn btn-secondary">Clear
+							Cart</button>
+						<button type="button" onclick="checkout()" class="send-order btn btn-danger">Send Order</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+				<div class="portfolio-button-wrapper">
+					<button class="portfolio-btn active" data-filter="*">All</button>
+					<button class="portfolio-btn" data-filter=".Meats">Meats</button>
+					<button class="portfolio-btn" data-filter=".Sides">Sides</button>
+					<button class="portfolio-btn" data-filter=".Desserts">Desserts</button>
+					<button class="portfolio-btn" data-filter=".Plates">Plates</button>
+					<button class="portfolio-btn" data-filter=".No-Category">No Category</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="row grid gallery-4">
+			<% food.forEach(foodItem=> { %>
+			<div class="col-lg-4 col-md-6 gallery-item <%= foodItem.category %>">
+				<div class="single-gallery">
+					<div class="image">
+						<img src="../../../../img/images/logo.png" alt="">
+						<div class="overlay">
+							<div class="action">
+								<a href="#" class="add-to-cart" data-name="<%= foodItem.name.replace(" ", "-") %>"
+									data-price="<%= foodItem.price %>"> <i class="lni lni-cart-full"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="info">
+						<h5><%= foodItem.name %></h5>
+						<p><strong>Price:</strong> $<%= foodItem.price %></p>
+					</div>
+				</div>
+			</div>
+
+			<% }) %>
+		</div>
+
+</section>
+
+<%- include("../partials/footer") %>

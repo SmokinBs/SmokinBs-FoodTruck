@@ -1,20 +1,22 @@
-<%- include("partials/header") %>
+<%- include("../partials/header") %>
 
 <!-- Header Style 3 -->
 <section class="hero-section-wrapper-3">
 	<div class="hero-section hero-style-3 img-bg"
 		style="background-image: url('../../../img/old/hero/hero-3/hero-bg.svg');">
 		<div class="container">
-			<%- include("partials/message") %>
+			<%- include("../partials/message") %>
 			<div class="row justify-content-center">
 				<div class="col-xl-8 col-lg-8">
 					<div class="hero-content-wrapper">
 						<div class="content">
-							<h2 class="mb-30">Hello, Admin</h2>
-							<p class="mb-40">Welcome to the admin dashboard where you can create, update, or delete
-								different food items!</p>
+							<h2 class="mb-30">Food Truck</h2>
+							<p class="mb-40">This is the home page for the FoodTruck. Kitchen open <a
+									href="/kitchen">this</a>; Counter open <a href="/counter">this</a>.
+							</p>
 							<div class="buttons">
-								<a href="/dashboard" class="button button-lg radius-10">Foods</a>
+								<a href="/kitchen" class="button button-lg radius-10">Kitchen</a>
+								<a href="/counter" class="button button-lg radius-10">Counter</a>
 							</div>
 						</div>
 						<div class="image">
@@ -37,4 +39,4 @@
 	</div>
 </section>
 
-<%- include("partials/footer") %>
+<%- include("../partials/footer") %>

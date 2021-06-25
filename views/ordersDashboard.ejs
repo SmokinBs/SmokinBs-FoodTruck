@@ -1,0 +1,70 @@
+<%- include("partials/header") %>
+
+<section id="gallery-4" class="gallery-section gallery-style-4">
+	<div class="container">
+
+		<%- include("partials/message") %>
+
+		<div class="row">
+			<div class="col-xxl-7 col-xl-8 col-lg-10">
+				<div class="section-title mt-40">
+					<h3 class="mb-15">Orders</h3>
+					<p>(Hover or Click to see options)</p>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="portfolio-button-wrapper">
+					<button class="portfolio-btn active" data-filter="*">All</button>
+					<button class="portfolio-btn" data-filter=".currentOrders">Current Orders</button>
+					<button class="portfolio-btn" data-filter=".pastOrders">Past Orders</button>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row grid gallery-4 meats">
+			<% orderItem.forEach(order=> { %>
+			<% if ([true].includes(order.isOrderOpen)) { %>
+			<div class="col-lg-4 col-md-6 gallery-item currentOrders">
+				<div class="single-gallery">
+					<div class="image">
+						<img src="../../../img/images/orders.svg" alt="">
+						<div class="overlay">
+							<div class="action">
+								<a href="/view-order/<%= order._id %>"> <i class="lni lni-eye"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="info">
+						<h5>Name: <%= order.customer.name %></h5>
+						<p><strong>Price:</strong> $<%= order.totalPrice %></p>
+						<p><strong>Contents:</strong> Open to preview</p>
+					</div>
+				</div>
+			</div>
+			<% } %>
+			<% if ([false].includes(order.isOrderOpen)) { %>
+			<div class="col-lg-4 col-md-6 gallery-item pastOrders">
+				<div class="single-gallery">
+					<div class="image">
+						<img src="../../../img/images/orders.svg" alt="">
+						<div class="overlay">
+							<div class="action">
+								<a href="/view-order/<%= order._id %>"> <i class="lni lni-eye"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="info">
+						<h5>Name: <%= order.customer.name %></h5>
+						<p><strong>Price:</strong> $<%= order.totalPrice %></p>
+						<p><strong>Contents:</strong> Open to preview</p>
+					</div>
+				</div>
+			</div>
+			<% } %>
+			<% }) %>
+		</div>
+	</div>
+</section>
+
+<%- include("partials/footer") %>

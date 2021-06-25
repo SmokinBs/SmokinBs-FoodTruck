@@ -1,12 +1,7 @@
-const nodeFetch = require("node-fetch");
-const { foodSchema, alertSchema } = require("../models/foodSchema");
-
-let isServerOpen = false;
-
+const { foodSchema, orderSchema } = require("../models/schemas");
 
 // Locals
 exports.locals = async (req, res, next) => {
-	res.locals.isOpen = isServerOpen
 	res.locals.success = req.flash("success")
 	res.locals.error = req.flash("error")
 	next()
@@ -45,22 +40,38 @@ exports.authSignIn = async (req, res, next) => {
 }
 
 
-// Post here to change the status of the website
-exports.businessStatus = async (req, res, next) => {
-	isServerOpen = !isServerOpen
-	nodeFetch("http://smokinbsbbq.tk/open-status")
-	nodeFetch(`https://maker.ifttt.com/trigger/isSmokinOpen/with/key/${process.env.IFTTT}?value1=Business Status Changed&value2=Set status to: ${isServerOpen}`, { method: "POST" })
-
-	res.redirect("/dashboard")
+// Admin Dashboards
+exports.renderFoodsDashboard = async (req, res, next) => {
+	foodSchema.find({}, (err, foodItem) => {
+		!err ? res.render("dashboard", { food: foodItem }) : console.log(`Error[find]: ${err}`);
+	})
 }
 
 
-// Admin Dashboard
-exports.renderDashboard = async (req, res, next) => {
-	foodSchema.find({}, (err, foodItem) => {
-		alertSchema.find({}, (err1, alertItem) => {
-			!err && !err1 ? res.render("dashboard", { food: foodItem, alerts: alertItem }) : console.log(`Error[find]: ${err}`);
-		})
+exports.placeOrder = async (req, res) => {
+	let checkoutCart = req.body;
+	let totalPrice = 0;
+	let customer = {};
+
+	checkoutCart.forEach(order => {
+		if (order.total) totalPrice += Number(order.total);
+		customer.name = order?.customerName;
+		customer.additionalComments = order?.additionalComments;
+	})
+
+	let newOrder = new orderSchema({
+		orderContents: checkoutCart,
+		customer,
+		totalPrice,
+		isOrderOpen: true,
+	})
+	await newOrder.save(err => {
+		if (!err) {
+			res.redirect("/counter")
+			return req.flash("success", "Sent Order!")
+		}
+		res.redirect("/counter")
+		return req.flash("error", "Error Sending Order.")
 	})
 }
 
@@ -87,24 +98,25 @@ exports.createFood = async (req, res, next) => {
 	})
 }
 
+// Orders
+exports.renderViewOrder = async (req, res, next) => {
+	const order = await orderSchema.findById(req.params.id);
 
-// Creation of a new Alert
-exports.renderAlertCreation = async (req, res, next) => {
-	res.render("editing/newAlert")
+	res.render("foodtruck/viewOrder", { order })
 }
-exports.createAlert = async (req, res, next) => {
-	let alertItem = new alertSchema({
-		title: req.body.title,
-		content: req.body.content
+// Orders
+exports.updateOrder = async (req, res, next) => {
+	const order = await orderSchema.findByIdAndUpdate(req.params.id, {
+		isOrderOpen: req.body.openOrder === "on" ? true : false
 	});
 
-	await alertItem.save(err => {
+	await order.save(err => {
 		if (!err) {
-			req.flash("success", "Successfully Created A New Food Item.")
-			return res.redirect("/dashboard")
+			req.flash("success", "Successfully Updated Order.")
+			return res.redirect("/kitchen")
 		}
-		req.flash("error", "Error Creating A New Food Item.")
-		return res.redirect("/dashboard")
+		req.flash("error", "Error Updating Order.")
+		return res.redirect("/kitchen")
 	})
 }
 
@@ -133,38 +145,27 @@ exports.updateFoodItem = async (req, res, next) => {
 }
 
 
-// Editing Alerts
-exports.renderEditAlert = async (req, res, next) => {
-	const alertItem = await alertSchema.findById(req.params.id)
-	res.render("editing/editAlert", { alertItem })
-}
-exports.updateAlert = async (req, res, next) => {
-	const alertItem = await alertSchema.findByIdAndUpdate(req.params.id, {
-		title: req.body.title,
-		content: req.body.content
-	});
-
-	await alertItem.save(err => {
-		if (!err) {
-			req.flash("success", "Successfully Updated An Alert.")
-			return res.redirect("/dashboard")
-		}
-		req.flash("error", "Error Updating An Alert.")
-		return res.redirect("/dashboard")
-	})
-}
-
-
-// Destroy Foods and Alerts
+// Destroy Foods
 exports.destroyFood = async (req, res, next) => {
 	await foodSchema.findByIdAndDelete(req.params.id);
 	req.flash("success", "Successfully Deleted A Food Item.")
 	res.redirect("/dashboard");
 }
-exports.destroyAlert = async (req, res, next) => {
-	await alertSchema.findByIdAndDelete(req.params.id);
-	req.flash("success", "Successfully Deleted An Alert.")
-	res.redirect("/dashboard");
+
+
+// Food Truck
+exports.foodtruck = async (req, res) => {
+	res.render("foodtruck/home");
+}
+exports.foodTruckBack = async (req, res) => {
+	orderSchema.find({}, (err, orderI) => {
+		!err ? res.render("foodtruck/kitchen", { orderI }) : console.log(`Error[find]: ${err}`);
+	})
+}
+exports.foodTruckFront = async (req, res) => {
+	foodSchema.find({}, (err, food) => {
+		!err ? res.render("foodtruck/counter", { food }) : console.log(`Error[find]: ${err}`);
+	})
 }
 
 

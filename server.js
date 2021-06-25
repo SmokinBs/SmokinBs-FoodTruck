@@ -13,6 +13,7 @@ mongoose.connection.on('error', err => { console.log("Error[onErr]: " + err); })
 
 // Middleware
 app.use(require("body-parser").urlencoded({ extended: true }));
+app.use(require("body-parser").json());
 app.use(express.static("./public"));
 app.set("views", "./views")
 app.set('view engine', 'ejs');
@@ -26,31 +27,33 @@ app.use(flash());
 
 
 app.use(controllers.locals)
-app.get("/", controllers.isAuth, controllers.index);
-app.get("/open-status", controllers.isAuth, controllers.businessStatus);
-app.get("/dashboard", controllers.isAuth, controllers.renderDashboard);
-
 
 app.route("/sign-in")
 	.get(controllers.renderSignIn)
 	.post(controllers.authSignIn);
 
+app.get("/", controllers.isAuth, controllers.foodtruck);
+app.get("/dashboard", controllers.isAuth, controllers.renderFoodsDashboard);
+
+app.post("/place-order", controllers.isAuth, controllers.placeOrder);
+
+app.route("/view-order/:id")
+	.get(controllers.isAuth, controllers.renderViewOrder)
+	.post(controllers.isAuth, controllers.updateOrder);
+
+
 app.route("/create-food")
 	.get(controllers.isAuth, controllers.renderFoodCreation)
 	.post(controllers.isAuth, controllers.createFood)
-app.route("/create-alert")
-	.get(controllers.isAuth, controllers.renderAlertCreation)
-	.post(controllers.isAuth, controllers.createAlert)
 
 app.route("/edit-food/:id")
 	.get(controllers.isAuth, controllers.renderEditFood)
 	.post(controllers.isAuth, controllers.updateFoodItem)
-app.route("/edit-alert/:id")
-	.get(controllers.isAuth, controllers.renderEditAlert)
-	.post(controllers.isAuth, controllers.updateAlert)
 
-app.get("/d/food/:id", controllers.isAuth, controllers.destroyFood)
-app.get("/d/alert/:id", controllers.isAuth, controllers.destroyAlert)
+// FOOD TRUCK
+app.get("/kitchen", controllers.isAuth, controllers.foodTruckBack)
+app.get("/counter", controllers.isAuth, controllers.foodTruckFront)
+app.get("/d/:id", controllers.isAuth, controllers.destroyFood)
 
 
 app.use(controllers.render404)

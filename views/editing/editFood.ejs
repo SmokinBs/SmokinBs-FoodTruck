@@ -1,4 +1,4 @@
-<%- include("../partials/editHeader") %>
+<%- include("../partials/header") %>
 
 <section id="contact" class="contact-section contact-style-1">
 	<div class="container">
@@ -43,25 +43,17 @@
 							<div class="col-md-6">
 								<div class="single-input">
 									<label for="price">Item Price</label>
-									<input type="text" id="price" name="price" class="form-input"
-										placeholder="$30 rack / $10 Pound / $5 Individual $10 Family"
-										value="<%= foodItem.price %>" required>
+									<input type="number" id="price" name="price" class="form-input"
+										placeholder="30 / 10 / 5" value="<%= foodItem.price %>" required>
 									<i class="lni lni-text-format"></i>
-								</div>
-							</div>
-							<div class="col-md-12">
-								<div class="single-input">
-									<label for="description">Short Description</label>
-									<textarea name="description" id="description" class="form-input" rows="6"
-										required><%= foodItem.shortDescription %></textarea>
-									<i class="lni lni-comments-alt"></i>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-button">
 									<button type="submit" class="button radius-10">Update<i
 											class="lni lni-telegram-original"></i> </button>
-									<button type="menu" class="button radius-10">Cancel<i class="lni lni-close"></i>
+									<button type="button" onclick="window.location='/dashboard'"
+										class="button radius-10">Cancel<i class="lni lni-close"></i>
 									</button>
 								</div>
 							</div>
@@ -78,4 +70,4 @@
 	</div>
 </section>
 
-<%- include("../partials/editFooter") %>
+<%- include("../partials/footer") %>
